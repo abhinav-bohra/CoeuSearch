@@ -2,7 +2,7 @@
 -----
 ## _Neural File Search Engine_
 
-![CoeuSearch-Demo](https://abhinav-bohra/CoeuSearch/Documentation/CoeuSearch-Demo.gif)
+![CoeuSearch-Demo](https://github.com/abhinav-bohra/CoeuSearch/blob/main/Documentation/CoeuSearch-Demo.gif)
 
 
 > In Greek mythology, _Coeus_ was the Titan-god of the inquisitive mind, his name meaning "query" or "questioning"
