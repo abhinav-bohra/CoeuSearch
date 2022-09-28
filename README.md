@@ -6,7 +6,7 @@ In Greek mythology, _Coeus_ was the Titan-god of the inquisitive mind, his name 
 
 ![CoeuSearch-Demo](https://github.com/abhinav-bohra/CoeuSearch/blob/main/Documentation/CoeuSearch-Demo.gif)
 
-CoeuSearch is an NLP based intelligent local-file search engine that searches for relevant text documents in a specific folder, considering the semantics of the file’s name & its content and returns the most relevant files.Dillinger is a cloud-enabled, mobile-ready, offline-storage compatible,
+CoeuSearch is an NLP based intelligent local-file search engine that searches for relevant text documents in a specific folder, considering the semantics of the file’s name & it's content and returns the most relevant files.
 
 #### Input
 - Search Directory: Location of folder to be searched
