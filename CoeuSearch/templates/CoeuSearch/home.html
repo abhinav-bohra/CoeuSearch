@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>CoeuSearch</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'CoeuSearch/img/search.png' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'CoeuSearch/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'CoeuSearch/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'CoeuSearch/css/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'CoeuSearch/css/fa-icons-pro.css' %}">
+</head>
+
+<body>	
+	<div class="limiter">
+		<div class="container-coeus" style="background-image: url({% static 'CoeuSearch/img/bg7.jpg' %}");>
+			<div class="wrap-coeus p-l-25 p-r-25 p-t-35 p-b-25 container-fluid">
+				<form class="coeus-form validate-form" action="search" method="post" autocomplete="off">
+                    {% csrf_token %}
+					<a href="{% url 'home' %}">
+                        <span class="coeus-form-title p-b-49" >
+                            <img src="{% static 'CoeuSearch/img/search.png' %}" style="width: 50px;">
+                            CoeuSearch
+					    </span>
+                    </a>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="path"><i class="fa fa-folder"></i></span>
+                        </div>
+                        {% if path %}                           
+                        <input type="text" class="form-control" value="{{path}}" aria-label="path" aria-describedby="path" name="path" >
+                        {% else %}
+                        <input type="text" class="form-control" placeholder="Select your search directory" aria-label="path" aria-describedby="path" name="path" >
+                        {% endif %}
+                    </div>
+                    <div><br></div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="query"><i class="fa fa-search"></i></span>
+                        </div>
+                        {% if query %}                           
+                        <input type="text" class="form-control" value="{{query}}" aria-label="query" aria-describedby="query" name="query" >
+                        {% else %}
+                        <input type="text" class="form-control" placeholder="Type your search query" aria-label="query" aria-describedby="query" name="query" >
+                        {% endif %}
+                        <div class="input-group-append">
+                          <button id="searchForm" class="btn btn-outline-secondary" type="submit">Search</button>
+                        </div>
+                    </div>
+                    <div><br></div>
+                    <div class="card" style="width: 100%; min-height: 40vh;">
+                        <div class="card-body">    
+                            <div id="loader">
+                                <div class="d-flex justify-content-center" style="margin-top: 7%;">
+                                    <img src="{% static 'CoeuSearch/img/loading.gif' %}" style="width: 40%;">
+                                </div>
+                            </div>
+                            <div id="results_box">
+                                <div class="card-body">
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                            {{ message }}
+                                            </div>  
+                                        {% endfor %}                             
+                                    {% endif %}
+                                    {% if results %}
+                                    <h5 class="card-title">Search Results</h5> 
+                                    <div class="row">
+                                        {% for f in results.files %}
+                                        <div class="col-12">
+                                            <p class="card-text h7">
+                                                {% if f.1 == 'pdf' %}
+                                                <i class="far fa-file-pdf" style="color: red;">&nbsp;</i>
+                                                {% elif f.1 == 'doc' %}
+                                                <i class="far fa-file-word" style="color: blue;">&nbsp;</i>
+                                                {% elif f.1 == 'txt' %}
+                                                <i class="far fa-file-alt" style="color: darkgray;">&nbsp;</i>
+                                                {% elif f.1 == 'ppt' %}
+                                                <i class="fa fa-file-powerpoint-o" style="color: orange;">&nbsp;</i>
+                                                {% elif f.1 == 'csv' %}
+                                                <i class="fas fa-file-csv" style="color: green;">&nbsp;</i>
+                                                {% elif f.1 == 'image' %}
+                                                <i class="fa fa-picture-o" style="color: purple;"></i>
+                                                {% else %}
+                                                <i class="fas fa-file" style="color: black;">&nbsp;</i>
+                                                {% endif %}
+                                                &nbsp;{{f.0}}
+                                            </p>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div><br></div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script src="{% static 'CoeuSearch/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'CoeuSearch/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'CoeuSearch/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'CoeuSearch/js/main.js' %}"></script>
+    <script>
+        $(document).ready(function(){
+            $(document).on('click', '#searchForm', function(){
+                document.querySelector("#results_box").style.visibility = "hidden";
+                document.querySelector("#loader").style.display = "block";
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            document.querySelector("#loader").style.display = "none";
+            document.querySelector("#results_box").style.visibility = "visible";
+        });
+    </script>
+</body>
+</html>
