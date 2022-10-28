@@ -30,7 +30,7 @@ def search(request):
                 print(color.CYAN + f"\t[PATH]: {path}" + color.END)
                 print(color.CYAN + f"\t[QUERY]: {query}" + color.END)
                 
-                probs = {'title_prob_thres':0.80, 'content_prob_thres':0.70, 'topic_prob_thres':0.70}
+                probs = configs.probs
                 results, end_time = getFiles(path, query, probs)
                 time_taken = np.round(end_time - start_time, 2)
 

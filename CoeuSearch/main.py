@@ -11,6 +11,7 @@ import pickle
 import PyPDF2
 import numpy as np
 import pandas as pd
+import configs
 from tqdm import tqdm
 from keybert import KeyBERT
 from nltk.stem import WordNetLemmatizer 
@@ -25,10 +26,13 @@ from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 # nltk.download('all')
 color = Color()
 lemmatizer = WordNetLemmatizer()
+use_cache = configs.use_cache
+model_name = configs.model_name
+
 kw_model = KeyBERT()
-sbert_model = SentenceTransformer('bert-base-nli-mean-tokens')
-# sbert_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
-cache_base_path = "C:/Users/abhin/Downloads/CoeuSearch/cache/"
+sbert_model = SentenceTransformer(model_name)
+
+cache_base_path = configs.cache_base_path
 if not os.path.exists(cache_base_path):
     os.makedirs(cache_base_path)
 
@@ -148,13 +152,13 @@ class File:
 
     setFileConfig(self)
     setTitle(self)
-    if cacheCheck(self)==0:
+
+    if use_cache and cacheCheck(self):
+        print( color.CYAN + f"\t[LOADING DATA FROM CACHE]: {self.name}" + color.END)
+    else:
         print( color.CYAN + f"\t[PREPARING NEW DATA]: {self.name}" + color.END)
         readContent(self)
         processEmbeds(self)
-    else:
-        print( color.CYAN + f"\t[LOADING DATA FROM CACHE]: {self.name}" + color.END)
-
 
 #---------------------------------------------------------------------------------------------------------------------------
 # GET FILES IN DIRECTORY | PROCESS QUERY | CALL SEARCH

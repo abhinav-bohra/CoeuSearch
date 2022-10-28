@@ -42,6 +42,7 @@ Download or clone this repository on your system.
       source CoeuSearch\bin\activate  (For Ubuntu)
 ```
 - Run command ```pip3 install -r requirements.txt```
+- Change ```cache_base_path``` in configs.py according to your machine path
 - Run command ```python3 manage.py runserver```
 - Click on localhost link generated after execution of previous command
 

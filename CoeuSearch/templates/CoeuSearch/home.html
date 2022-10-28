@@ -15,7 +15,7 @@
 
 <body>	
 	<div class="limiter">
-		<div class="container-coeus" style="background-image: url({% static 'CoeuSearch/img/bg7.jpg' %}");>
+		<div class="container-coeus" style="background-image: url({% static 'CoeuSearch/img/bg.jpg' %})";>
 			<div class="wrap-coeus p-l-25 p-r-25 p-t-35 p-b-25 container-fluid">
 				<form class="coeus-form validate-form" action="search" method="post" autocomplete="off">
                     {% csrf_token %}
@@ -53,8 +53,8 @@
                     <div class="card" style="width: 100%; min-height: 40vh;">
                         <div class="card-body">    
                             <div id="loader">
-                                <div class="d-flex justify-content-center" style="margin-top: 7%;">
-                                    <img src="{% static 'CoeuSearch/img/loading.gif' %}" style="width: 40%;">
+                                <div class="d-flex justify-content-center" style="margin-top: 3%;">
+                                    <img src="{% static 'CoeuSearch/img/loading.gif' %}" style="width: 35%;">
                                 </div>
                             </div>
                             <div id="results_box">
