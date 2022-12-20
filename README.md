@@ -49,7 +49,7 @@ Download or clone this repository on your system.
 ## Future Work
 > - Extend this tool to a multi-modal search engine that supports image, audio and video data by utilising Vision Transformers and Automatic Speech Recognition.
 > - Enable multilingual search queriesBy by using pre-trained language models like mBERT and XLM
-> - Improve inference speed by using Approximate Nearest Neighbors for semantic similarity
+> - Improve inference speed by using ![Efficient Nearest Neighbor Search for Cross-Encoder Models using Matrix Factorization](https://github.com/iesl/anncur) for semantic similarity
 
 ## Contributing
 
